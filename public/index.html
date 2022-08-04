@@ -30,6 +30,17 @@
         #top {
             margin-top: calc(100vh + var(--offset));
         }
+
+        .gentle-hover-shake:hover {
+  animation: tilt-shaking 0.25s infinite;
+}
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
     </style>
 </head>
 
@@ -63,13 +74,13 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
                 id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
-                    <li class="mr-3">
+                    <li class="mr-3 gentle-hover-shake">
                         <a class="inline-block text-black font-bold no-underline" target="_blank"
                             href="https://www.linkedin.com/in/jeffri-junianto-suharno/">
                             <i class="fa-brands fa-linkedin fa-2xl text-white"></i>
                         </a>
                     </li>
-                    <li class="mr-3">
+                    <li class="mr-3 gentle-hover-shake">
                         <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-1 px-2"
                             target="_blank" href="https://instagram.com/krabbypepy/">
                             <i class="fa-brands fa-square-instagram fa-2xl text-white"></i>
@@ -85,12 +96,13 @@
         <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <!--Left Col-->
             <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-                <p class="uppercase tracking-loose w-full">What business are you?</p>
+                <p class="uppercase tracking-loose w-full"><strong>Golang Kanban</strong></p>
                 <h1 class="my-4 text-5xl font-bold leading-tight">
                     LAKBAN!
                 </h1>
                 <p class="leading-normal text-2xl mb-8">
-                    Golang Kanban, yeah it's!
+                    Digitalize your conventional sticky notes with <strong>LAKBAN!</strong><br>
+                    Best for people who <i>cannot read their own hand writing</i>.
                 </p>
                 <a href="#kanban"
                     class="mx-auto lg:mx-0 bg-white hover:bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -99,7 +111,7 @@
             </div>
             <!--Right Col-->
             <div class="w-full md:w-3/5 py-6 text-center">
-                <img class="w-full md:w-4/5 z-50" src="<%= BASE_URL %>banner.png" />
+                <img class="w-full md:w-4/5 z-50 gentle-hover-shake" src="<%= BASE_URL %>banner.png" />
             </div>
         </div>
     </div>
@@ -126,7 +138,7 @@
             </g>
         </svg>
     </div>
-    <section class="bg-white border-b py-8" id="kanban" style="height: 100vh;">
+    <section class="bg-white py-8" id="kanban" style="height: 100vh;">
         <div class="container max-w-5xl mx-auto m-8" id="app">
         </div>
     </section>

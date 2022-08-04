@@ -16,12 +16,12 @@
                                 id="assignee" type="text" placeholder="Assignee" v-model="form.assignee" required>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="issue">
-                                Issue
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="task">
+                                Task
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="issue" type="text" placeholder="Issue" v-model="form.description" required>
+                                id="task" type="text" placeholder="Task" v-model="form.description" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="deadline">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="flex items-center justify-center">
                             <button
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit">
                                 Save
                             </button>
@@ -148,6 +148,9 @@ export default {
                                     // console.log(res.data.data)
                                     this.columns[0].tasks.push(res.data.data)
                                 });
+                this.form.assignee = ''
+                this.form.description = ''
+                this.form.deadline_at = ''
             this.$swal.fire({
                 position: 'center',
                 icon: 'success',

@@ -11,7 +11,7 @@
     </div>
     <div class="flex mt-4 justify-between items-center">
       <span class="text-sm text-gray-600">{{ currentDateTime(task.deadline_at) }}</span>
-      <button class="text-sm text-red-700" title="Delete this task" @click="doDelete(task.id)"><i
+      <button class="text-sm text-red-700 gentle-hover-shake" title="Delete this task" @click="doDelete(task.id)"><i
           class="fa-solid fa-trash"></i></button>
       <!-- <badge v-if="task.is_done" :color="badgeColor">{{(task.is_done === true) ? 'Done' : 'To Do'}}</badge> -->
     </div>
@@ -40,7 +40,7 @@
           Cancel
         </button>
         <button title="Save this task"
-          class="bg-blue-500 hover:bg-blue-700 text-white px-1 rounded focus:outline-none focus:shadow-outline"
+          class="bg-blue-700 hover:bg-blue-500 text-white px-1 rounded focus:outline-none focus:shadow-outline"
           type="submit">
           Save
         </button>
