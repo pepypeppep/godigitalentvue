@@ -103,6 +103,13 @@ export default {
           this.task = res.data.data;
           this.cancel();
         });
+            this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Task has been updated',
+                showConfirmButton: false,
+                timer: 1700
+                });
       } catch (error) {
         console.log(error)
       }

@@ -2,17 +2,18 @@
     <div id="app">
         <div class="flex justify-center">
             <div class="min-h-screen flex overflow-x-scroll py-12">
-                <div class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4">
-                    <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">Create New Issue</p>
+                <div class="rounded-lg px-3 py-3 column-width rounded mr-4">
                     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" role="form"
                         @submit.prevent="doSubmit()">
-                        <div class="mb-4">
+                    <h1 class="text-gray-700 font-semibold font-sans tracking-wide text-center">Create New Task</h1>
+                    <hr>
+                        <div class="mb-4 mt-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="assignee">
                                 Assignee
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="assignee" type="text" placeholder="Assignee" v-model="form.assignee">
+                                id="assignee" type="text" placeholder="Assignee" v-model="form.assignee" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="issue">
@@ -20,7 +21,7 @@
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="issue" type="text" placeholder="Issue" v-model="form.description">
+                                id="issue" type="text" placeholder="Issue" v-model="form.description" required>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="deadline">
@@ -28,7 +29,7 @@
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="deadline" type="date" placeholder="Deadline" v-model="form.deadline_at">
+                                id="deadline" type="date" placeholder="Deadline" v-model="form.deadline_at" required>
                         </div>
                         <div class="flex items-center justify-center">
                             <button
@@ -86,7 +87,22 @@ export default {
                     let response = axios.put("http://localhost:3000/api/update/progress/" + evt.added.element.id, {
                         is_done: list.is_done
                     });
-                    // this.getData();
+                    const Toast = this.$swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', this.$swal.stopTimer)
+                        toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'success',
+                    title: 'Task moved successfully'
+                    })
                 } catch (error) {
                     console.log(error)
                 }
@@ -110,7 +126,7 @@ export default {
                         {
                             id: 0,
                             is_done: false,
-                            title: "To do list",
+                            title: "Task List",
                             tasks: todos
                         },
                         {
@@ -132,6 +148,13 @@ export default {
                                     // console.log(res.data.data)
                                     this.columns[0].tasks.push(res.data.data)
                                 });
+            this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'New task has been added',
+                showConfirmButton: false,
+                timer: 1700
+                });
             } catch (error) {
                 console.log(error)
             }
@@ -142,6 +165,13 @@ export default {
             this.columns[column].tasks.splice(idx,1)
             try {
                 let response = axios.delete("http://localhost:3000/api/" + id);
+            this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Task has been deleted',
+                showConfirmButton: false,
+                timer: 1700
+                });
             } catch (error) {
                 console.log(error)
             }
